@@ -1,210 +1,357 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>王晓制作</title>
-    <link type="text/css" rel="stylesheet" src="./lixin/default.css">
-    <script type="text/javascript" src="./lixin/jquery.min.js"></script>
-    <script type="text/javascript" src="./lixin/jscex.min.js"></script>
-    <script type="text/javascript" src="./lixin/jscex-parser.js"></script>
-    <script type="text/javascript" src="./lixin/jscex-jit.js"></script>
-    <script type="text/javascript" src="./lixin/jscex-builderbase.min.js"></script>
-    <script type="text/javascript" src="./lixin/jscex-async.min.js"></script>
-    <script type="text/javascript" src="./lixin/jscex-async-powerpack.min.js"></script>
-    <script type="text/javascript" src="./lixin/functions.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./lixin/love.js" charset="utf-8"></script>
-    <style type="text/css">
-        <!--
-        .STYLE1 {
-            color: #666666
-        }
-        -->
-    </style>
-</head>
-<body>
-<audio autoplay="autopaly">
-    <source src="renxi.mp3" type="audio/mp3" />
-</audio>
-<div id="main">
+<meta charset="utf-8">
+<title>聚合搜索</title>
 
-    <div id="wrap">
-        <div id="text">
-            <div id="code"> <font color="#FF0000"> <span class="say">亲爱的小宝宝，我爱你，虽然你看不见我对你的告白</span><br>
-                <span class="say"> </span><br>
-                <span class="say"> 我知道我不会甜言蜜语，但是我会用行动证明一切</span><br>
-                <span class="say">你说我啰嗦，有些东西因为越在乎所以越失去</span><br>
-                <span class="say">因为我太爱你了，所以我失去你了</span><br>
-                <span class="say">因为我太啰嗦了，所以你离开了我</span><br>
-                <span class="say">虽然你看不见我的告白，但是我还是要把这些心里话说出来</span><br>
-                <span class="say"> </span><br>
-                <span class="say"><span class="space"></span> -- 爱你的王晓--</span> </font>
-                </p>
-            </div>
-        </div>
-        <div id="clock-box"> <span class="STYLE1"></span><font color="#33CC00">亲爱的小宝宝，我喜欢你</font> <span class="STYLE1">已经是……</span>
-            <div id="clock"></div>
-        </div>
-        <canvas id="canvas" width="1100" height="680"></canvas>
-    </div>
-</div>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-</script>
-<script>
-    (function(){
-        var canvas = $('#canvas');
 
-        if (!canvas[0].getContext) {
-            $("#error").show();
-            return false;        }
 
-        var width = canvas.width();
-        var height = canvas.height();
-        canvas.attr("width", width);
-        canvas.attr("height", height);
-        var opts = {
-            seed: {
-                x: width / 2 - 20,
-                color: "rgb(190, 26, 37)",
-                scale: 2
-            },
-            branch: [
-                [535, 680, 570, 250, 500, 200, 30, 100, [
-                    [540, 500, 455, 417, 340, 400, 13, 100, [
-                        [450, 435, 434, 430, 394, 395, 2, 40]
-                    ]],
-                    [550, 445, 600, 356, 680, 345, 12, 100, [
-                        [578, 400, 648, 409, 661, 426, 3, 80]
-                    ]],
-                    [539, 281, 537, 248, 534, 217, 3, 40],
-                    [546, 397, 413, 247, 328, 244, 9, 80, [
-                        [427, 286, 383, 253, 371, 205, 2, 40],
-                        [498, 345, 435, 315, 395, 330, 4, 60]
-                    ]],
-                    [546, 357, 608, 252, 678, 221, 6, 100, [
-                        [590, 293, 646, 277, 648, 271, 2, 80]
-                    ]]
-                ]]
-            ],
-            bloom: {
-                num: 700,
-                width: 1080,
-                height: 650,
-            },
-            footer: {
-                width: 1200,
-                height: 5,
-                speed: 10,
-            }
-        }
+// 跳转页面
+function skipTab(webName){
+    // 获得查询的网站名称
+    // 获得输入框的值
+    var value = document.getElementById("searchWord").value;
+    switch(webName){
+        case "csdn":
+            var csdn =  "https://so.csdn.net/so/search/s.do?q="+value+"&t=blog&o=&s=&l=&f=";
+            window.open(csdn,'_blank');
+            break;
+        case "Baidu":
+            var baidu = "https://www.baidu.com/s?ie=UTF-8&wd="+value;
+            window.open(baidu,'_blank');
+            break;
+        case "Bing":
+        var bing = "https://cn.bing.com/search?q="+value;
+            window.open(bing,'_blank');
+            break;
+        case "bilibili":
+        var bilibili = "https://search.bilibili.com/video?keyword="+value;
+            window.open(bilibili,'_blank');
+            break;
+        case "juejin":
+        var juejin= "https://juejin.im/search?query="+value+"&type=article";
+            window.open(juejin,'_blank');
+            break;
+        break;
+        case "jingdong":
+            var jingdong = "https://search.jd.com/Search?keyword="+value+"&enc=utf-8&wq="+value;
+            window.open(jingdong,'_blank');
+            break;
+        case "jianshu":
+            var jianshu = "https://www.jianshu.com/search?q="+value+"&page=1&type=note";
+            window.open(jianshu,'_blank');
+            break;
+        break;
+        case "zhihu":
+            var zhihu = "https://www.zhihu.com/search?type=content&q="+value;
+            window.open(zhihu,'_blank');
+            break;
+        break;
+        case "cnblog":
+            var cnblog = "https://zzk.cnblogs.com/s?t=b&w="+value;
+            window.open(cnblog,'_blank');
+            break;
+        
+        break;
+        case "github":
+            var github = "https://github.com/search?q="+value+"&type=Repositories";
+            window.open(github,'_blank');
+            break;
+        break;
+        case "stackOverflow":
+            var stackOverflow = "https://stackoverflow.com/search?q="+value;
+            window.open(stackOverflow,'_blank');
+            break;
+        break;
 
-        var tree = new Tree(canvas[0], width, height, opts);
-        var seed = tree.seed;
-        var foot = tree.footer;
-        var hold = 1;
+    }
+}
 
-        canvas.click(function(e) {
-            var offset = canvas.offset(), x, y;
-            x = e.pageX - offset.left;
-            y = e.pageY - offset.top;
-            if (seed.hover(x, y)) {
-                hold = 0;
-                canvas.unbind("click");
-                canvas.unbind("mousemove");
-                canvas.removeClass('hand');
-            }
-        }).mousemove(function(e){
-            var offset = canvas.offset(), x, y;
-            x = e.pageX - offset.left;
-            y = e.pageY - offset.top;
-            canvas.toggleClass('hand', seed.hover(x, y));
+// js使用正则表达式
+function regexFilter(msg) {
+    console.log("+++++++++++++++>"+msg.toString());
+    var reg = new RegExp("<strong>([\\S\\s]+?)</strong>");
+    console.log(reg.exec(msg));
+
+
+}
+
+// 动态生辰bing的推荐
+function dynamicCreateElementOfBing(arr){
+
+    if(arr==null){
+        $("#commentParentBing").remove();
+        return;
+    }
+    var parent = document.getElementById("commentParentBing");
+
+    var app = document.getElementById("app");
+
+    $("#commentParentBing").remove();
+
+    var divP = document.createElement("div");
+
+    divP.setAttribute("id","commentParentBing");
+
+    divP.style.width="400px";
+
+    // divP.style="CommentParent";
+    app.appendChild(divP);
+
+    for (var  index = 0; index < arr.length; index++) {
+        var div = document.createElement("button");
+        div.setAttribute("id","i");
+        // div.setAttribute("onmouseover","font-size='22px'");
+        // div.setAttribute("onmouseout","font-size='16px'");
+        div.style.height="40px";
+        div.style.display="flex";
+        div.style.flexDirection="row";
+        div.style.justifyContent="flex-start";
+        div.style.border="none";
+        div.style.fontSize="18px";
+        div.style.outline="none";
+        div.style.background="rgba(240, 235, 235, 0.01)";
+
+        div.addEventListener("click",(event)=>{
+            // 改变输入框的值
+            changeInputvalue(event.srcElement.innerHTML);
+        });
+        div.addEventListener("mouseover",(event)=>{
+            event.srcElement.style.fontSize="22px";
+        });
+        div.addEventListener("mouseout",(event)=>{
+            event.srcElement.style.fontSize="18px";
         });
 
-        var seedAnimate = eval(Jscex.compile("async", function () {
-            seed.draw();
-            while (hold) {
-                $await(Jscex.Async.sleep(10));
-            }
-            while (seed.canScale()) {
-                seed.scale(0.95);
-                $await(Jscex.Async.sleep(10));
-            }
-            while (seed.canMove()) {
-                seed.move(0, 2);
-                foot.draw();
-                $await(Jscex.Async.sleep(10));
-            }
-        }));
+        div.innerText=arr[index].q;
+        divP.appendChild(div);
+    }
+}
 
-        var growAnimate = eval(Jscex.compile("async", function () {
-            do {
-    	        tree.grow();
-                $await(Jscex.Async.sleep(10));
-            } while (tree.canGrow());
-        }));
 
-        var flowAnimate = eval(Jscex.compile("async", function () {
-            do {
-    	        tree.flower(2);
-                $await(Jscex.Async.sleep(10));
-            } while (tree.canFlower());
-        }));
+// 动态生成元素
+function dynamicCreateElement(arr){
 
-        var moveAnimate = eval(Jscex.compile("async", function () {
-            tree.snapshot("p1", 240, 0, 610, 680);
-            while (tree.move("p1", 500, 0)) {
-                foot.draw();
-                $await(Jscex.Async.sleep(10));
-            }
-            foot.draw();
-            tree.snapshot("p2", 500, 0, 610, 680);
+    if(arr==null){
+        $("#commentParent").remove();
+        return;
+    }
+    var parent = document.getElementById("commentParent");
 
-            // 会有闪烁不得意这样做, (＞﹏＜)
-            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-            canvas.css("background", "#ffe");
-            $await(Jscex.Async.sleep(300));
-            canvas.css("background", "none");
-        }));
+    var app = document.getElementById("app");
 
-        var jumpAnimate = eval(Jscex.compile("async", function () {
-            var ctx = tree.ctx;
-            while (true) {
-                tree.ctx.clearRect(0, 0, width, height);
-                tree.jump();
-                foot.draw();
-                $await(Jscex.Async.sleep(25));
-            }
-        }));
+    $("#commentParent").remove();
 
-        var textAnimate = eval(Jscex.compile("async", function () {
-		    var together = new Date();
-		    together.setFullYear(2018,12,25); 			//时间年月日
-		    together.setHours(16);						//小时
-		    together.setMinutes(53);					//分钟
-		    together.setSeconds(0);					//秒前一位
-		    together.setMilliseconds(2);				//秒第二位
+    var divP = document.createElement("div");
 
-		    $("#code").show().typewriter();
-            $("#clock-box").fadeIn(500);
-            while (true) {
-                timeElapse(together);
-                $await(Jscex.Async.sleep(1000));
-            }
-        }));
+    divP.setAttribute("id","commentParent");
 
-        var runAsync = eval(Jscex.compile("async", function () {
-            $await(seedAnimate());
-            $await(growAnimate());
-            $await(flowAnimate());
-            $await(moveAnimate());
+    divP.style.width="400px";
 
-            textAnimate().start();
+    // divP.style="CommentParent";
+    app.appendChild(divP);
 
-            $await(jumpAnimate());
-        }));
+    for (var  index = 0; index < arr.length; index++) {
+        var div = document.createElement("button");
+        div.setAttribute("id",index);
+        div.style.height="40px";
+        div.style.display="flex";
+        div.style.flexDirection="row";
+        div.style.justifyContent="flex-start";
+        div.style.border="none";
+        div.style.fontSize="18px";
+        div.style.outline="none";
+        div.style.background="rgba(240, 235, 235, 0.01)";
 
-        runAsync().start();
-    })();
-    </script>
+        div.addEventListener("click",(event)=>{
+            // 改变输入框的值
+            changeInputvalue(event.srcElement.innerHTML);
+        });
+        div.addEventListener("mouseover",(event)=>{
+            event.srcElement.style.fontSize="22px";
+        });
+        div.addEventListener("mouseout",(event)=>{
+            event.srcElement.style.fontSize="18px";
+        });
+    
+        div.innerText=arr[index].q;
+        divP.appendChild(div);
+    }
+}
+// 改变input的值
+function changeInputvalue(params) {
+    $("#searchWord").val(params);
+}
 
-</body>
+// 请求推荐搜索数据
+function ajaxCommentMsg(msg){
+   $.ajax({
+       url:"https://www.baidu.com/sugrec?ie=utf-8&json=1&prod=pc&from=pc_web&wd="+msg,
+       type:"get",
+       dataType:"jsonp",
+       contentType: 'application/json',
+       Host: "www.baidu.com",
+        success: function(data){
+            //console.log(data);
+            dynamicCreateElement(data.g);
+            //dynamicCreateElementOfBing(data.g);
+        },
+        error: function(xhr, type){
+
+        }
+   })
+}
+// 请求bing数据
+function ajaxCommentMsgOfBing(msg){
+    if (msg.length<=1){
+        dynamicCreateElementOfBing(null);
+    }
+    msg = msg.substr(0,msg.length/2);
+    $.ajax({
+        url:"https://www.baidu.com/sugrec?ie=utf-8&json=1&prod=pc&from=pc_web&wd="+msg,
+        type:"get",
+        dataType:"jsonp",
+        Host: "www.baidu.com",
+        contentType: 'application/json',
+        success: function(data){
+            //console.log(data);
+            //dynamicCreateElement(data.g);
+            dynamicCreateElementOfBing(data.g);
+        },
+        error: function(xhr, type){
+
+        }
+    })
+}
+
+// 监听input内容变化
+function commentList(){
+    $("#searchWord").bind("input propertychange",function (event) {
+        //console.log($('#searchWord').val());
+        var msg = $("#searchWord").val();
+        ajaxCommentMsg(msg);
+        ajaxCommentMsgOfBing(msg);
+    })
+}
+
+
+window.onload = function () {
+            //监听input 内容
+            commentList();
+
+        }
+
+</script>
+<style type="text/css">
+body {
+    /* 在这设置背景图片 */
+    background-image: url("http://pic1.win4000.com/wallpaper/2017-10-23/59ed5b65d8caa.jpg");
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    height: 100%;}
+.TabBarContainer{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center}
+.TabBar{
+    border: none;
+    outline: none;
+    font-size: 32px;
+    background: rgba(240, 235, 235, 0.01);
+    font-weight: bold;
+    font-family:Georgia,serif;
+    font-style:oblique;}
+.SearchInputContext{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    margin-top: 60px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;}
+.CommentParent{
+    margin-top: 20px;
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    }
+.CommentSuperparent{
+    display: flex;
+    justify-content: flex-start;
+    width: 800px;
+    flex-direction: row;
+}
+.SearchInput{
+    background: rgba(240, 235, 235, 0.01);
+   height: 50px;
+   width: 800px;
+   margin-right: 20px;
+   font-size: 20px;
+   padding-left: 12px;}
+.Comment{
+    height: 50px;
+    width: 400px;
+   }
+.App {
+  text-align: center;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;}
+</style>
+</head>
+<body class="App" >
+
+        <div class="TabBarContainer">
+            <button onclick="skipTab('bilibili')" class="TabBar">哔哩哔哩</button>
+            <button onclick="skipTab('stackOverflow')" class="TabBar">stackOverflow</button>
+            <button onclick="skipTab('jingdong')" class="TabBar">京东</button>
+            <button onclick="skipTab('Bing')" class="TabBar">淘宝</button>
+            <button onclick="skipTab('jianshu')" class="TabBar">简书</button>
+        </div>
+
+        <div class="TabBarContainer">
+            <button onclick="skipTab('juejin')" class="TabBar">掘金</button>
+            <button onclick="skipTab('csdn')" class="TabBar">CSDN</button>
+            <button onclick="skipTab('Baidu')" class="TabBar">百度</button>
+            <button onclick="skipTab('Bing')" class="TabBar">必应</button>
+            <button onclick="skipTab('github')" class="TabBar">Github</button>
+            <button onclick="skipTab('cnblog')" class="TabBar">博客园</button>
+            <button onclick="skipTab('zhihu')" class="TabBar">知乎</button>
+            <button onclick="skipTab('bilibili')" class="TabBar">哔哩哔哩</button>
+        </div>
+
+
+
+ <div class="SearchInputContext">
+    <input id="searchWord" class="SearchInput" type="text" />
+
+ </div>
+<div class="CommentSuperparent" id="app">
+
+
+    <div class="CommentParent" id= "commentParent">
+
+    </div>
+    <div class="CommentParent" id= "commentParentBing">
+
+    </div>
+
+
+</div>
+
+
+ </body>
 </html>
