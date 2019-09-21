@@ -6,7 +6,7 @@
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
 
-
+    var curr = -1;
 // 跳转页面
 function skipTab(webName){
     // 获得查询的网站名称
@@ -77,8 +77,6 @@ function regexFilter(msg) {
 
 }
 
-
-
 // 动态生辰bing的推荐
 function dynamicCreateElementOfBing(arr){
 
@@ -132,7 +130,6 @@ function dynamicCreateElementOfBing(arr){
     }
 }
 
-
 // 动态生成元素
 function dynamicCreateElement(arr){
 
@@ -140,6 +137,7 @@ function dynamicCreateElement(arr){
         $("#commentParent").remove();
         return;
     }
+
     var parent = document.getElementById("commentParent");
 
     var app = document.getElementById("app");
@@ -158,6 +156,7 @@ function dynamicCreateElement(arr){
     for (var  index = 0; index < arr.length; index++) {
         var div = document.createElement("button");
         div.setAttribute("id",index);
+        div.setAttribute("class","com");
         div.style.height="40px";
         div.style.display="flex";
         div.style.flexDirection="row";
@@ -185,6 +184,7 @@ function dynamicCreateElement(arr){
 }
 // 改变input的值
 function changeInputvalue(params) {
+    $("#searchWord").val('');
     $("#searchWord").val(params);
 }
 
@@ -229,22 +229,77 @@ function ajaxCommentMsgOfBing(msg){
     })
 }
 
-// 监听input内容变化
+// 监听input内容变化 发送ajax请求数据
 function commentList(){
     $("#searchWord").bind("input propertychange",function (event) {
         //console.log($('#searchWord').val());
         var msg = $("#searchWord").val();
+        curr=-1;
         ajaxCommentMsg(msg);
-        ajaxCommentMsgOfBing(msg);
+       // ajaxCommentMsgOfBing(msg);
     })
 }
-
 
 window.onload = function () {
             //监听input 内容
             commentList();
+            listernKeyBoard();
 
+};
+
+function listernKeyBoard() {
+
+    $(document).keydown(function(e){
+        console.log(e.keyCode);  //获取当前按键的键码
+        element = document.getElementById("commentParent");
+        //console.log(element.getElementsByClassName("com"));
+        //list  = element.childNodes;
+        //console.log(list[1]);
+        // 疯狂switch
+
+        switch (e.keyCode){
+            case 40:
+                var arr = element.getElementsByClassName("com");
+                if (curr>=arr.length-1){
+                    arr[curr].style.fontSize="18px";
+                    curr = -1;
+                }
+                // if(curr >= arr.length-1){
+                //     break;
+                // }
+                // console.log("curr======"+curr);
+                // console.log("arr======"+arr.length);
+               changeInputvalue(arr[curr+1].innerText);
+               arr[curr+1].style.fontSize="22px";
+               if (curr > -1){
+                   arr[curr].style.fontSize="18px";
+               }
+                curr = curr + 1;
+               break;
+            case 38:
+                event.preventDefault();
+                var arr = element.getElementsByClassName("com");
+                if (curr <= 0){
+                    arr[curr].style.fontSize="18px";
+                    curr = arr.length-1;
+                }
+                if (curr <= 0){
+                    break;
+                }
+                changeInputvalue(arr[curr-1].innerText);
+                arr[curr -1].style.fontSize="22px";
+                if (curr > -1){
+                    arr[curr].style.fontSize="18px";
+                }
+                curr = curr -1;
+                break;
+            case 13:
+                skipTab("Baidu");
+                break;
         }
+
+    });
+}
 
 </script>
 <style type="text/css">
@@ -354,9 +409,9 @@ body {
     <div class="CommentParent" id= "commentParent">
 
     </div>
-    <div class="CommentParent" id= "commentParentBing">
+    <!--<div class="CommentParent" id= "commentParentBing">-->
 
-    </div>
+    <!--</div>-->
 
 
 </div>
