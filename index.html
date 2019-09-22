@@ -5,6 +5,7 @@
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
+// 代码写的匆忙 很多地方需要改写 但是这个主要是我自己用 各位大佬勿喷
 
     var curr = -1;
 // 跳转页面
@@ -15,53 +16,53 @@ function skipTab(webName){
     switch(webName){
         case "csdn":
             var csdn =  "https://so.csdn.net/so/search/s.do?q="+value+"&t=blog&o=&s=&l=&f=";
-            window.open(csdn,'_blank');
+            window.open(csdn,'csdn');
             break;
         case "Baidu":
             var baidu = "https://www.baidu.com/s?ie=UTF-8&wd="+value;
-            window.open(baidu,'_blank');
+            window.open(baidu,'Baidu');
             break;
         case "Bing":
         var bing = "https://cn.bing.com/search?q="+value;
-            window.open(bing,'_blank');
+            window.open(bing,'Bing');
             break;
         case "bilibili":
         var bilibili = "https://search.bilibili.com/video?keyword="+value;
-            window.open(bilibili,'_blank');
+            window.open(bilibili,'bilibili');
             break;
         case "juejin":
         var juejin= "https://juejin.im/search?query="+value+"&type=article";
-            window.open(juejin,'_blank');
+            window.open(juejin,'juejin');
             break;
         break;
         case "jingdong":
             var jingdong = "https://search.jd.com/Search?keyword="+value+"&enc=utf-8&wq="+value;
-            window.open(jingdong,'_blank');
+            window.open(jingdong,'jingdong');
             break;
         case "jianshu":
             var jianshu = "https://www.jianshu.com/search?q="+value+"&page=1&type=note";
-            window.open(jianshu,'_blank');
+            window.open(jianshu,'jianshu');
             break;
         break;
         case "zhihu":
             var zhihu = "https://www.zhihu.com/search?type=content&q="+value;
-            window.open(zhihu,'_blank');
+            window.open(zhihu,'zhihu');
             break;
         break;
         case "cnblog":
             var cnblog = "https://zzk.cnblogs.com/s?t=b&w="+value;
-            window.open(cnblog,'_blank');
+            window.open(cnblog,'cnblog');
             break;
         
         break;
         case "github":
             var github = "https://github.com/search?q="+value+"&type=Repositories";
-            window.open(github,'_blank');
+            window.open(github,'github');
             break;
         break;
         case "stackOverflow":
             var stackOverflow = "https://stackoverflow.com/search?q="+value;
-            window.open(stackOverflow,'_blank');
+            window.open(stackOverflow,'stackOverflow');
             break;
         break;
 
