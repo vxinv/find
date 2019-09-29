@@ -71,7 +71,7 @@ function skipTab(webName){
 
 // js使用正则表达式
 function regexFilter(msg) {
-    console.log("+++++++++++++++>"+msg.toString());
+    //console.log("+++++++++++++++>"+msg.toString());
     var reg = new RegExp("<strong>([\\S\\s]+?)</strong>");
     console.log(reg.exec(msg));
 
@@ -254,10 +254,6 @@ function listernKeyBoard() {
     $(document).keydown(function(e){
         console.log(e.keyCode);  //获取当前按键的键码
         element = document.getElementById("commentParent");
-        //console.log(element.getElementsByClassName("com"));
-        //list  = element.childNodes;
-        //console.log(list[1]);
-        // 疯狂switch
         switch (e.keyCode){
             case 40:
                 var arr = element.getElementsByClassName("com");
@@ -265,11 +261,6 @@ function listernKeyBoard() {
                     arr[curr].style.fontSize="18px";
                     curr = -1;
                 }
-                // if(curr >= arr.length-1){
-                //     break;
-                // }
-                // console.log("curr======"+curr);
-                // console.log("arr======"+arr.length);
                changeInputvalue(arr[curr+1].innerText);
                arr[curr+1].style.fontSize="22px";
                if (curr > -1){
@@ -294,9 +285,13 @@ function listernKeyBoard() {
                 }
                 curr = curr -1;
                 break;
+            // enter 开始搜索
             case 13:
                 skipTab("Baidu");
                 break;
+            // 监听左右键 切换不同的搜索
+            case 78:
+
         }
 
     });
@@ -306,9 +301,9 @@ function listernKeyBoard() {
 <style type="text/css">
 body {
     /* 在这设置背景图片 */
-    background-image: url("http://pic1.win4000.com/wallpaper/2017-12-27/5a434608437e4.jpg");
+    /*background-image: url("http://pic1.win4000.com/wallpaper/2017-12-27/5a434608437e4.jpg");*/
     /*绿叶 http://b-ssl.duitang.com/uploads/item/201804/30/20180430194448_4Nj3F.jpeg*/
-    /*background-image: url("https://pic4.zhimg.com/v2-df1bc28d2e1f7e2e758a30aa688c9ddb_r.jpg");*/
+    background-image: url("http://uploads.oh100.com/allimg/1709/158-1F921102021-51.jpg");
     /*背景图片不重复*/
     background-size: cover;
     background-repeat:no-repeat;
