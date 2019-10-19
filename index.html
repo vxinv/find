@@ -73,7 +73,7 @@ function skipTab(webName){
 function regexFilter(msg) {
     //console.log("+++++++++++++++>"+msg.toString());
     var reg = new RegExp("<strong>([\\S\\s]+?)</strong>");
-    console.log(reg.exec(msg));
+    //console.log(reg.exec(msg));
 
 
 }
@@ -302,14 +302,13 @@ function listernKeyBoard() {
 body {
     /* 在这设置背景图片 */
     background-image: url("http://b-ssl.duitang.com/uploads/item/201704/15/20170415224802_NyUYe.png");
-    /*background-image: url("http://b-ssl.duitang.com/uploads/item/201804/30/20180430194448_4Nj3F.jpeg");*/
-    /*背景图片不重复*/
     background-size: cover;
     background-repeat:no-repeat;
     display: -webkit-flex;
     display: flex;
     width: 100%;
-    height: 100%;}
+    height: 100%;
+    }
 .TabBarContainer{
     width: 100%;
     margin-top: 30px;
@@ -368,7 +367,26 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;}
+  height: 100%;
+}
+.weixin{
+        top: 400px;
+        position: fixed;
+        right: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .commentPerson{
+        position: fixed;
+        bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-size: 18px;
+        align-items: center;
+    }
 </style>
 </head>
 <body class="App" >
@@ -399,6 +417,7 @@ body {
     <input id="searchWord" class="SearchInput" type="text" />
 
  </div>
+
 <div class="CommentSuperparent" id="app">
 
 
@@ -412,6 +431,14 @@ body {
 
 </div>
 
+<div class="weixin" >
+    <image style="width:100px;height:100px" src="http://a4.qpic.cn/psb?/V132xVxi2QJ0ul/Bc*GnmJTLL.DTM86yYZ06sOxmTnVQG30kCKQo54Fh9g!/c/dIMAAAAAAAAA&ek=1&kp=1&pt=0&bo=rgGuAQAAAAAAACY!&tl=3&vuin=1377204804&tm=1571493600&sce=60-2-2&rf=0-0"></image>
+</div>
+
+
+    <div class="commentPerson">
+       <text>主动一点 我们才会有故事  右边微信</text>
+    </div>
 
  </body>
 </html>
